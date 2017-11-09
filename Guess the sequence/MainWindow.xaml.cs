@@ -12,6 +12,8 @@ namespace Guess_the_sequence
     /// </summary>
     public partial class MainWindow : Window
     {
+        #region Lists and Variables declaration / + initialization
+
         private List<Button> ButtonList = new List<Button>();
         private List<int> CurrentSequenceList = new List<int>();
         private List<SolidColorBrush> BrushesList = new List<SolidColorBrush>()
@@ -28,6 +30,8 @@ namespace Guess_the_sequence
             new BrushConverter().ConvertFromString("#FF3C003C") as SolidColorBrush  //darkPurple
         };
         private int CurrentGuessBlock = 1, CurrentScore = 0, SequenceMaximum = 6;
+
+        #endregion
 
         public MainWindow()
         {
@@ -170,6 +174,8 @@ namespace Guess_the_sequence
             }
         }
 
+        #region Button event handlers
+
         private void RedButton1_Click(object sender, RoutedEventArgs e) => AnyButton_Click(1);
 
         private void OrangeButton2_Click(object sender, RoutedEventArgs e) => AnyButton_Click(2);
@@ -181,5 +187,7 @@ namespace Guess_the_sequence
         private void BlueButton5_Click(object sender, RoutedEventArgs e) => AnyButton_Click(5);
 
         private void PurpleButton6_Click(object sender, RoutedEventArgs e) => AnyButton_Click(6);
+
+        #endregion
     }
 }

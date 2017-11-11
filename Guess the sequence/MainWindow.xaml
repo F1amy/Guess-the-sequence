@@ -5,17 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Guess_the_sequence"
         mc:Ignorable="d"
-        Title="Mastermind" Height="391" Width="487" Background="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+        Title="Mastermind" Height="400" Width="500" Background="White" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="MyButtonStyle" TargetType="Button">
             <Setter Property="OverridesDefaultStyle" Value="True"/>
-            <Setter Property="Margin" Value="5"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Name="Border" 
                             BorderThickness="2"
-                            Padding="4,2"
                             BorderBrush="DarkGray" 
                             CornerRadius="10" 
                             Background="{TemplateBinding Background}">
@@ -33,29 +31,34 @@
     </Window.Resources>
     <Grid x:Name="MainGird">
         <Grid.RowDefinitions>
-            <RowDefinition Height="77*"/>
-            <RowDefinition Height="60*"/>
-            <RowDefinition Height="46*"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="90"/>
+            <RowDefinition />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
+            <ColumnDefinition />
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Button x:Name="RedButton1" Content="" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Margin="77,110,0,0" VerticalAlignment="Top" Width="85" Height="85" Background="#FF7F0000" Grid.RowSpan="2" Click="RedButton1_Click" Cursor="Hand" IsEnabled="False" Grid.ColumnSpan="2"/>
-        <Button x:Name="OrangeButton2" Content="" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Margin="77,110,0,0" VerticalAlignment="Top" Width="85" Height="85" Background="#FF805700" Grid.RowSpan="2" Grid.ColumnSpan="2" Click="OrangeButton2_Click" IsEnabled="False" Cursor="Hand" Grid.Column="1"/>
-        <Button x:Name="YellowButton3" Content="" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Margin="77,110,0,0" VerticalAlignment="Top" Width="85" Height="85" Background="#FF7A8000" Grid.Column="2" Grid.RowSpan="2" IsEnabled="False" Click="YellowButton3_Click" Cursor="Hand" Grid.ColumnSpan="2"/>
-        <Button x:Name="GreenButton4" Content="" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Margin="77,77,0,0" VerticalAlignment="Top" Width="85" Height="85" Background="#FF004700" Grid.Row="1" IsEnabled="False" Click="GreenButton4_Click" Cursor="Hand" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <Button x:Name="BlueButton5" Content="" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Margin="77,77,0,0" VerticalAlignment="Top" Width="85" Height="85" Background="#FF000055" Grid.Row="1" IsEnabled="False" Click="BlueButton5_Click" Cursor="Hand" Grid.Column="1" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
-        <Button x:Name="PurpleButton6" Content="" Style="{StaticResource MyButtonStyle}" HorizontalAlignment="Left" Margin="77,77,0,0" VerticalAlignment="Top" Width="85" Height="85" Background="#FF3C003C" Grid.Column="2" Grid.Row="1" IsEnabled="False" Click="PurpleButton6_Click" Cursor="Hand" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+        <Button x:Name="RedButton1" Content="" Style="{StaticResource MyButtonStyle}" Background="#FF7F0000" Click="AnyButton_Click" Cursor="Hand" IsEnabled="False" Grid.Row="1" Grid.Column="1"/>
+        <Button x:Name="OrangeButton2" Content="" Style="{StaticResource MyButtonStyle}" Background="#FF805700" Click="AnyButton_Click" IsEnabled="False" Cursor="Hand" Grid.Column="3" Grid.Row="1"/>
+        <Button x:Name="YellowButton3" Content="" Style="{StaticResource MyButtonStyle}" Background="#FF7A8000" Grid.Column="5" IsEnabled="False" Click="AnyButton_Click" Cursor="Hand" Grid.Row="1"/>
+        <Button x:Name="GreenButton4" Content="" Style="{StaticResource MyButtonStyle}" Background="#FF004700" Grid.Row="3" IsEnabled="False" Click="AnyButton_Click" Cursor="Hand" Grid.Column="1"/>
+        <Button x:Name="BlueButton5" Content="" Style="{StaticResource MyButtonStyle}" Background="#FF000055" Grid.Row="3" IsEnabled="False" Click="AnyButton_Click" Cursor="Hand" Grid.Column="3"/>
+        <Button x:Name="PurpleButton6" Content="" Style="{StaticResource MyButtonStyle}" Background="#FF3C003C" Grid.Column="5" Grid.Row="3" IsEnabled="False" Click="AnyButton_Click" Cursor="Hand"/>
 
-        <Label x:Name="TitleLabel" Content="Guess the sequence of colors" HorizontalAlignment="Left" Margin="106,10,0,0" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="4" Height="37" Width="267"/>
-        <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Margin="82,60,0,0" VerticalAlignment="Top" Width="75" Height="23" FontSize="14" Grid.ColumnSpan="2" Click="StartButton_Click" Grid.Column="1"/>
-        <TextBlock x:Name="ScoreTextBlock" Grid.Column="2" HorizontalAlignment="Left" Margin="70,60,0,0" TextWrapping="Wrap" Text="Score: 0" VerticalAlignment="Top" Width="100" Height="24" TextAlignment="Center" FontSize="18" Grid.ColumnSpan="2"/>
-        <TextBlock x:Name="InformationTextBlock" HorizontalAlignment="Left" Margin="84,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" TextAlignment="Center" Text="Press -&gt;" Width="71" Grid.ColumnSpan="2" Height="24"/>
-        <TextBlock x:Name="DebugStringTextBlock" HorizontalAlignment="Left" Margin="10,65,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="4" Width="461" TextAlignment="Center" Height="16"/>
+        <Label x:Name="TitleLabel" Content="Guess the sequence of colors" HorizontalAlignment="Left" Margin="41,10,0,0" VerticalAlignment="Top" FontSize="20" Grid.ColumnSpan="5" Height="37" Width="267" Grid.Column="1"/>
+        <Button x:Name="StartButton" Content="Start" HorizontalAlignment="Left" Margin="7,58,0,0" VerticalAlignment="Top" Width="75" Height="24" FontSize="14" Click="StartButton_Click" Grid.Column="3"/>
+        <TextBlock x:Name="ScoreTextBlock" Grid.Column="4" HorizontalAlignment="Left" Margin="35,58,0,0" TextWrapping="Wrap" Text="Score: 0" VerticalAlignment="Top" Width="100" Height="24" TextAlignment="Center" FontSize="18" Grid.ColumnSpan="3"/>
+        <TextBlock x:Name="InformationTextBlock" HorizontalAlignment="Left" Margin="9,58,0,0" TextWrapping="Wrap" VerticalAlignment="Top" FontSize="18" TextAlignment="Center" Text="Press -&gt;" Width="71" Height="24" Grid.Column="1"/>
+        <TextBlock x:Name="DebugStringTextBlock" HorizontalAlignment="Left" Margin="10,14,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Grid.ColumnSpan="7" Width="474" TextAlignment="Center" Height="16"/>
 
     </Grid>
 </Window>

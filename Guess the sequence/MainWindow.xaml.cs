@@ -45,7 +45,7 @@ namespace Guess_the_sequence
             ButtonList.Add(PurpleButton6);
         }
 
-        private void Button_ChangeColor(int ButtonNumber, bool EnableMode)
+        private void ChangeButtonColor(int ButtonNumber, bool EnableMode)
         {
             if (EnableMode == true)
             {
@@ -57,7 +57,7 @@ namespace Guess_the_sequence
             }
         }
 
-        private void Sequence_CreateNew()
+        private void CreateNewSequence()
         {
             Random Random = new Random();
 
@@ -71,12 +71,12 @@ namespace Guess_the_sequence
 
             #if DEBUG
 
-            DebugStringTextBlock.Text = "Sequence: " + string.Join(", ", CurrentSequenceList) + ".";
+            DebugStringTextBlock.Text = "Sequence: " + "{ " + string.Join(", ", CurrentSequenceList) + " }" + ".";
 
             #endif
         }
 
-        private async void Sequence_Play()
+        private async void PlaySequence()
         {
             foreach (Button CurrentItem in ButtonList)
             {
@@ -87,16 +87,16 @@ namespace Guess_the_sequence
 
             foreach (int CurrentItem in CurrentSequenceList)
             {
-                Button_ChangeColor(CurrentItem - 1, true);
+                ChangeButtonColor(CurrentItem - 1, true);
                 await Task.Delay(1000);
 
-                Button_ChangeColor(CurrentItem - 1, false);
+                ChangeButtonColor(CurrentItem - 1, false);
                 await Task.Delay(500);
             }
 
             for (int i = 0; i < ButtonList.Count; i++)
             {
-                Button_ChangeColor(i, true);
+                ChangeButtonColor(i, true);
             }
 
             foreach (Button CurrentItem in ButtonList)
@@ -107,11 +107,11 @@ namespace Guess_the_sequence
             InformationTextBlock.Text = "Guess";
         }
 
-        private void Game_Won(bool isWon)
+        private void GameWon(bool isWon)
         {
             for (int i = 0; i < ButtonList.Count; i++)
             {
-                Button_ChangeColor(i, false);
+                ChangeButtonColor(i, false);
             }
 
             foreach (Button CurrentItem in ButtonList)
@@ -150,12 +150,12 @@ namespace Guess_the_sequence
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            Sequence_CreateNew();
+            CreateNewSequence();
 
             InformationTextBlock.Text = "Watch";
             StartButton.IsEnabled = false;
             
-            Sequence_Play();
+            PlaySequence();
         }
 
         private void AnyButton_Click(object sender, RoutedEventArgs e)
@@ -193,11 +193,11 @@ namespace Guess_the_sequence
 
             if (CurrentSequenceList[CurrentGuessBlock - 1] == ButtonNumber && CurrentGuessBlock == CurrentSequenceList.Count)
             {
-                Game_Won(true);
+                GameWon(true);
             }
             else if (CurrentSequenceList[CurrentGuessBlock - 1] != ButtonNumber)
             {
-                Game_Won(false);
+                GameWon(false);
             }
             else
             {
